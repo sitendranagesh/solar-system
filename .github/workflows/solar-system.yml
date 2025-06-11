@@ -47,7 +47,7 @@ jobs:
                 # echo "TEST_STATUS=$?" >> $GITHUB_OUTPUT
 
             - name: Archive Test Result
-              if: failure() && (${{ steps.unit-test-status.outcome }} == 'success' || ${{ steps.unit-test-status.outcome }} == 'failure')
+              if: ${{ failure() && ( steps.unit-test-status.outcome == 'success' || steps.unit-test-status.outcome == 'failure') }}
               uses: actions/upload-artifact@v4
               with:
                 name: Mocha-Test-Result-${{ matrix.operating-system }}-node-${{ matrix.node-version }}
