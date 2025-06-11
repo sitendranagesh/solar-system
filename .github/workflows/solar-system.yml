@@ -1,0 +1,32 @@
+name: Solar System Workflow
+on:
+    push:
+        branches: 
+            - main
+            - feature/*
+    workflow_dispatch: 
+
+jobs:
+    unit-testing:
+        name: Unit Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            
+            - name: Set up node js version 18
+              uses: actions/setup-node@v4
+              with:
+                node-version: 18
+            
+            - name: Install Dependencies
+              run: |
+                 echo "PWD: $PWD"
+                 echo "Installing dependencies..."
+                 npm install
+                 echo "Installation complete"
+            
+            - name: Unit testing
+              run: |
+                echo "Running unit test using nmp"
+                npm test
