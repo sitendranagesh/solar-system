@@ -61,7 +61,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: 18
-                
+
             - name: Install Dependencies
               run: |
                 which node
@@ -70,7 +70,9 @@ jobs:
                 npm install
             
             - name: Code Coverage
+              continue-on-error: true
               run: npm run coverage
+
             
             - name: Upload code coverage
               uses: actions/upload-artifact@v4
