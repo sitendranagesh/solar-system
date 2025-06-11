@@ -52,6 +52,7 @@ jobs:
                 echo "Running unit test using nmp"
                 npm test
                 # echo "TEST_STATUS=$?" >> $GITHUB_OUTPUT
+                ls -lart
 
             - name: Archive Test Result
               if: always()
@@ -85,6 +86,7 @@ jobs:
                 node --version
                 npm --version
                 npm install
+                ls -lart
             
             - name: Code Coverage
               continue-on-error: true
