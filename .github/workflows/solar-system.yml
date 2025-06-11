@@ -24,8 +24,8 @@ jobs:
               #     operating-system: macos-latest
         runs-on: ${{ matrix.operating-system }}
         services:
-         mongo-dv:
-          image: siddharth67/mongo-dv:non-prod
+         mongo-db:
+          image: siddharth67/mongo-db:non-prod
           ports:
             - 27017:27017 
         env: 
