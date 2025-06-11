@@ -103,6 +103,8 @@ jobs:
     docker:
       name: Logging into docker registry
       runs-on: ubuntu-latest
+      permissions: 
+        packages: write
       needs: 
         - code-coverage
         - unit-testing
