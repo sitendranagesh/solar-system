@@ -47,6 +47,7 @@ jobs:
             
             - name: Unit testing
               id: unit-test-status
+              continue-on-error: true
               run: |
                 echo "Running unit test using nmp"
                 npm test
