@@ -100,8 +100,8 @@ jobs:
                 path: coverage
                 retention-days: 5
 
-    docker-login:
-      name: Logging intot docker registry
+    docker:
+      name: Logging into docker registry
       runs-on: ubuntu-latest
       needs: 
         - code-coverage
@@ -115,6 +115,13 @@ jobs:
           with:
             username: ${{ vars.DOCKERHUB_USERNAME }}
             password: ${{ secrets.DOCKERHUB_TOKEN }}
+        
+        - name: login to GitHub Container Registry
+          uses: docker/login-action@v3
+          with:
+            registry: ghcr.io
+            username: ${{ github.repository_owner }}
+            password: ${{ secrets.GITHUB_TOKEN }}
         
         - name: Build the docker image
           uses: docker/build-push-action@v4
@@ -140,12 +147,14 @@ jobs:
             echo "Testing the Image URL using wget"
             wget -q -O - localhost:3000/live | grep live
 
-        - name: Push to DockerHub
+        - name: Push to DockerHub and GHCR
           uses: docker/build-push-action@v4
           with:
             context: .
             push: true
-            tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+            tags: |
+              ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
+              ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
 
 
 
