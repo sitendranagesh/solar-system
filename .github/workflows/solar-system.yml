@@ -198,9 +198,7 @@ jobs:
         - name: Get Kubernetes Details
           run: |
             kubectl version
-
             echo -----------------
-            
             kubectl get nodes
         
 
