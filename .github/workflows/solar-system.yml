@@ -194,7 +194,7 @@ jobs:
           with:
             method: kubeconfig
             kubeconfig: ${{ secrets.KUBECONFIG }}
-            context: k3d-k3dcluste
+            context: k3d-k3dcluster
         
         - name: Get Kubernetes Details
           run: |
