@@ -121,7 +121,7 @@ jobs:
                 retention-days: 5
 
     docker:
-      name: Logging into docker registry
+      name: Container Registry login, build and push
       runs-on: ubuntu-latest
       permissions: 
         packages: write
@@ -178,8 +178,8 @@ jobs:
               ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
               ghcr.io/${{ github.repository_owner }}/solar-system:${{ github.sha }}
 
-
     deploy-dev:
+      name: Deployment to Dev Cluster
       needs: docker
       runs-on: ubuntu-latest
       steps:
@@ -190,14 +190,19 @@ jobs:
           uses: azure/setup-kubectl@v4
           with:
             version: 'v1.26.0'
+        - uses: azure/k8s-set-context@v4
+          with:
+            method: kubeconfig
+            kubeconfig: ${{ secrets.KUBECONFIG }}
         
         - name: Get Kubernetes Details
           run: |
-            kubectl version --short
+            kubectl version
 
             echo -----------------
             
             kubectl get nodes
+        
 
 
 
