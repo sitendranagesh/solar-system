@@ -218,14 +218,14 @@ jobs:
         - name: Replace development manifest files
           uses: cschleiden/replace-tokens@v1
           with:
-            tokenPrefix: '{'
+            tokenPrefix: '${'
             tokenSuffix: '}'
             files: '["kubernetes/development/*.yaml"]'
           env:
             NAMESPACE: ${{ vars.NAMESPACE }}
             IMAGE: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
             REPLICAS: ${{ vars.REPLICAS }}
-            INGRESS_IP: $INGRESS_IP
+            INGRESS_IP: ${INGRESS_IP}
         
         - name: Check files
           run: | 
