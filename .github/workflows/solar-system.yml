@@ -204,13 +204,13 @@ jobs:
           with:
             method: kubeconfig
             kubeconfig: ${{ secrets.KUBECONFIG }}
-            context: k3d-k3dcluster
         
         - name: Get Kubernetes Details
           run: |
             kubectl version
             echo -----------------
             kubectl get nodes
+        
         
 
 
