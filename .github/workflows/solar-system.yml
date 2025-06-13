@@ -215,6 +215,10 @@ jobs:
           run: |
             echo "INGRESS_IP=$(kubectl get service -n ingress-nginx  ingress-nginx-controller -o jsonpath='{.status.loadBalancer.ingress[0].ip}')" >> $GITHUB_ENV
         
+        - name: echo values
+          run: |
+            echo "image-> ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}"
+
         - name: Replace development manifest files
           uses: cschleiden/replace-tokens@v1
           with:
