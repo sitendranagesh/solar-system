@@ -218,8 +218,8 @@ jobs:
         - name: Replace development manifest files
           uses: cschleiden/replace-tokens@v1
           with:
-            tokenPrefix: '${'
-            tokenSuffix: '}'
+            tokenPrefix: '_{_'
+            tokenSuffix: '_}_'
             files: '["kubernetes/development/deployment.yaml", "kubernetes/development/ingress.yaml", "kubernetes/development/service.yaml"]'
           env:
             NAMESPACE: "${{ vars.NAMESPACE }}"
