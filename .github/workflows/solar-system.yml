@@ -227,7 +227,7 @@ jobs:
             files: '["kubernetes/development/deployment.yaml", "kubernetes/development/ingress.yaml", "kubernetes/development/service.yaml"]'
           env:
             NAMESPACE: "${{ vars.NAMESPACE }}"
-            IMAGE: "${{ env.IMAGE }}"
+            K8S_IMAGE: "${{ env.IMAGE }}"
             REPLICAS: "${{ vars.REPLICAS }}"
             INGRESS_IP: "${{ env.INGRESS_IP }}"
         
