@@ -40,18 +40,23 @@ jobs:
               uses: actions/setup-node@v4
               with:
                 node-version: ${{matrix.node-version}}
-            - name: Cache the dependecies
-              uses: actions/cache@v3
-              with:
-                key: ${{ runner.os }}-node-module-${{ hashFiles('package-lock.json') }}
-                path: node_modules
+            # - name: Cache the dependecies
+            #   uses: actions/cache@v3
+            #   with:
+            #     key: ${{ runner.os }}-node-module-${{ hashFiles('package-lock.json') }}
+            #     path: node_modules
 
-            - name: Install Dependencies
-              run: |
-                 echo "PWD: $PWD"
-                 echo "Installing dependencies..."
-                 npm install
-                 echo "Installation complete"
+            # - name: Install Dependencies
+            #   run: |
+            #      echo "PWD: $PWD"
+            #      echo "Installing dependencies..."
+            #      npm install
+            #      echo "Installation complete"
+
+            - name: Using composite action to install npm moudles
+              uses: ./.github/custom-actions/npm-action
+              with:
+                npm-cache-path: npm_modules
             
             - name: Unit testing
               id: unit-test-status
@@ -94,19 +99,24 @@ jobs:
               with:
                 node-version: 18
             
-            - name: Cache the dependecies
-              uses: actions/cache@v3
-              with:
-                key: ${{ runner.os }}-node-module-${{ hashFiles('package-lock.json') }}
-                path: node_modules
+            # - name: Cache the dependecies
+            #   uses: actions/cache@v3
+            #   with:
+            #     key: ${{ runner.os }}-node-module-${{ hashFiles('package-lock.json') }}
+            #     path: node_modules
 
-            - name: Install Dependencies
-              run: |
-                which node
-                node --version
-                npm --version
-                npm install
-                ls -lart
+            # - name: Install Dependencies
+            #   run: |
+            #     which node
+            #     node --version
+            #     npm --version
+            #     npm install
+            #     ls -lart
+
+            - name: Using composite action to install npm moudles
+              uses: ./.github/custom-actions/npm-action
+              with:
+                npm-cache-path: npm_modules
             
             - name: Code Coverage
               continue-on-error: true
