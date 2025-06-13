@@ -217,7 +217,7 @@ jobs:
         
         - name: echo values
           run: |
-            echo "image-> ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}"
+            echo "IMAGE=${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}" >> $GITHUB_ENV
 
         - name: Replace development manifest files
           uses: cschleiden/replace-tokens@v1
@@ -227,7 +227,7 @@ jobs:
             files: '["kubernetes/development/deployment.yaml", "kubernetes/development/ingress.yaml", "kubernetes/development/service.yaml"]'
           env:
             NAMESPACE: "${{ vars.NAMESPACE }}"
-            IMAGE: "${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}"
+            IMAGE: "${{ env.IMAGE }}"
             REPLICAS: "${{ vars.REPLICAS }}"
             INGRESS_IP: "${{ env.INGRESS_IP }}"
         
