@@ -5,7 +5,7 @@ inputs:
     description: "path to cache npm"
     required: true
 runs:
-  using: composite-action
+  using: "composite"
   steps:
     - name: Cache the dependecies
       uses: actions/cache@v3
