@@ -217,7 +217,7 @@ jobs:
         
         - name: echo values
           run: |
-            echo "IMAGE=${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}" >> $GITHUB_ENV
+            echo "IMAGE=${{ vars.DOCKERHUB_USERNAME }}/solar-system\:${{ github.sha }}" >> $GITHUB_ENV
 
         - name: Replace development manifest files
           uses: cschleiden/replace-tokens@v1
