@@ -220,7 +220,7 @@ jobs:
           with:
             tokenPrefix: '${'
             tokenSuffix: '}'
-            files: '["kubernetes/development/*.yaml"]'
+            files: '["kubernetes/development/deployment.yaml", "kubernetes/development/ingress.yaml", "kubernetes/development/service.yaml"]'
           env:
             NAMESPACE: ${{ vars.NAMESPACE }}
             IMAGE: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}
